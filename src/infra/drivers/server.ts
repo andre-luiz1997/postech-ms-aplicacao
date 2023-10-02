@@ -16,7 +16,7 @@ function configureRoutes() {
   app.use(routes);
   
   app.listen(PORT, () => {
-    console.log(`Server escutando na porta ${PORT}`);
+    console.log(`Serverr escutando na porta ${PORT}`);
   });
 }
 
