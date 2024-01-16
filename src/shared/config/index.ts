@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv'
 import { emptyToUndefined } from '../utils';
-dotenv.config({path: '../../../.env'})
+dotenv.config({path: '.env'})
 // dotenv.config()
 
 export default {

@@ -34,4 +34,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "aws"]
+CMD ["npm", "run", "start"]
