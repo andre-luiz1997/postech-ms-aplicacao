@@ -1,5 +1,7 @@
 import { Cliente } from "src/domain/cliente/entities/cliente"
 import { ClienteMemoriaRepository } from "./clientesMemoria.repository"
+import { RegistroInexistenteException } from "src/shared/exceptions/registroInexistente.exception"
+import { RegistroExistenteException } from "src/shared/exceptions/registroExistente.exception"
 
 describe("Deve instanciar um repository de memória", () => {
   const clientesRepository = ClienteMemoriaRepository.Instance
@@ -25,7 +27,7 @@ describe("Deve instanciar um repository de memória", () => {
     const cliente = new Cliente({ _id: "2", nome: "teste", email: "teste@teste.com.br" })
     try {
       const output = await clientesRepository.criar({ item: cliente })
-      expect(output).toThrowError()
+      expect(output).toThrow(RegistroExistenteException)
     } catch (error) {}
   })
 
@@ -33,7 +35,7 @@ describe("Deve instanciar um repository de memória", () => {
     const cliente = new Cliente({ _id: "2", nome: "teste", cpf: "12345678901" })
     try {
       const output = await clientesRepository.criar({ item: cliente })
-      expect(output).toThrowError()
+      expect(output).toThrow(RegistroExistenteException)
     } catch (error) {}
   })
 
@@ -83,10 +85,11 @@ describe("Deve instanciar um repository de memória", () => {
     expect(output).toBeTruthy()
   })
 
+
   test("Verifica se deleta um cliente que nao esta cadastrado", async () => {
     try {
       const output = await clientesRepository.deletar({ _id: "10" })
-      expect(output).toThrowError()
+      expect(output).toThrow(RegistroInexistenteException)
     } catch (error) {}
   })
 })

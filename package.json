@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest  --passWithNoTests --silent --noStackTrace --runInBand",
+    "test": "jest  --passWithNoTests --silent --noStackTrace --runInBand --watch",
     "test:dev": "cross-env NODE_ENV=development jest",
     "dev": "cross-env NODE_ENV=development nodemon src/index.ts",
     "aws": "cross-env NODE_ENV=aws nodemon src/infra/drivers/server.ts",

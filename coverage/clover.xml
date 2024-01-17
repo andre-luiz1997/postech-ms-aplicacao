@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1705366020187" clover="3.2.0">
-  <project timestamp="1705366020187" name="All files">
-    <metrics statements="204" coveredstatements="180" conditionals="98" coveredconditionals="68" methods="58" coveredmethods="50" elements="360" coveredelements="298" complexity="0" loc="204" ncloc="204" packages="12" files="17" classes="17"/>
+<coverage generated="1705451584311" clover="3.2.0">
+  <project timestamp="1705451584311" name="All files">
+    <metrics statements="162" coveredstatements="158" conditionals="80" coveredconditionals="73" methods="49" coveredmethods="49" elements="291" coveredelements="280" complexity="0" loc="162" ncloc="162" packages="10" files="13" classes="13"/>
     <package name="domain.cliente.entities">
       <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="cliente.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\domain\cliente\entities\cliente.ts">
@@ -9,24 +9,24 @@
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="14" count="2" type="stmt"/>
-        <line num="24" count="10" type="stmt"/>
-        <line num="25" count="10" type="stmt"/>
+        <line num="24" count="12" type="stmt"/>
+        <line num="25" count="12" type="stmt"/>
         <line num="29" count="5" type="cond" truecount="1" falsecount="0"/>
         <line num="30" count="5" type="stmt"/>
       </file>
     </package>
     <package name="domain.cliente.usecases">
-      <metrics statements="11" coveredstatements="11" conditionals="8" coveredconditionals="6" methods="2" coveredmethods="2"/>
+      <metrics statements="11" coveredstatements="11" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
       <file name="cadastrarCliente.usecase.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\domain\cliente\usecases\cadastrarCliente.usecase.ts">
-        <metrics statements="11" coveredstatements="11" conditionals="8" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <metrics statements="11" coveredstatements="11" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="17" count="5" type="cond" truecount="3" falsecount="1"/>
-        <line num="18" count="5" type="cond" truecount="2" falsecount="1"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="17" count="7" type="cond" truecount="4" falsecount="0"/>
+        <line num="18" count="6" type="cond" truecount="3" falsecount="0"/>
         <line num="19" count="5" type="cond" truecount="1" falsecount="0"/>
         <line num="21" count="5" type="stmt"/>
         <line num="22" count="5" type="stmt"/>
@@ -36,37 +36,29 @@
       <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="item.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\domain\item\entities\item.ts">
         <metrics statements="9" coveredstatements="9" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="2"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="31" count="12" type="stmt"/>
-        <line num="32" count="12" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="31" count="15" type="stmt"/>
+        <line num="32" count="15" type="stmt"/>
         <line num="36" count="12" type="cond" truecount="1" falsecount="0"/>
         <line num="37" count="12" type="stmt"/>
       </file>
     </package>
     <package name="domain.item.usecases">
-      <metrics statements="13" coveredstatements="13" conditionals="1" coveredconditionals="0" methods="5" coveredmethods="5"/>
-      <file name="cadastrarItem.usecase.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\domain\item\usecases\cadastrarItem.usecase.ts">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="15" count="12" type="stmt"/>
-        <line num="17" count="12" type="stmt"/>
-      </file>
+      <metrics statements="8" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="editarItem.usecase.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\domain\item\usecases\editarItem.usecase.ts">
-        <metrics statements="8" coveredstatements="8" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <metrics statements="8" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <line num="4" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
-        <line num="21" count="7" type="stmt"/>
-        <line num="23" count="1" type="cond" truecount="0" falsecount="1"/>
-        <line num="24" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="24" count="0" type="stmt"/>
       </file>
     </package>
     <package name="infra.database.memory.cliente.repositories">
@@ -77,7 +69,7 @@
         <line num="11" count="2" type="stmt"/>
         <line num="13" count="2" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
-        <line num="18" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="22" count="5" type="stmt"/>
         <line num="26" count="2" type="stmt"/>
         <line num="27" count="2" type="cond" truecount="1" falsecount="0"/>
@@ -137,44 +129,46 @@
       </file>
     </package>
     <package name="infra.database.memory.item.repositories">
-      <metrics statements="35" coveredstatements="30" conditionals="23" coveredconditionals="12" methods="12" coveredmethods="11"/>
+      <metrics statements="37" coveredstatements="37" conditionals="23" coveredconditionals="21" methods="12" coveredmethods="12"/>
       <file name="itemMemoria.repository.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\infra\database\memory\item\repositories\itemMemoria.repository.ts">
-        <metrics statements="35" coveredstatements="30" conditionals="23" coveredconditionals="12" methods="12" coveredmethods="11"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="18" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="22" count="5" type="stmt"/>
-        <line num="23" count="60" type="cond" truecount="1" falsecount="2"/>
-        <line num="24" count="60" type="cond" truecount="2" falsecount="0"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="cond" truecount="0" falsecount="1"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="36" count="12" type="cond" truecount="0" falsecount="1"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="45" count="12" type="stmt"/>
-        <line num="46" count="12" type="stmt"/>
-        <line num="47" count="12" type="cond" truecount="1" falsecount="0"/>
-        <line num="48" count="12" type="stmt"/>
-        <line num="49" count="12" type="stmt"/>
-        <line num="53" count="1" type="stmt"/>
-        <line num="54" count="1" type="cond" truecount="0" falsecount="1"/>
-        <line num="55" count="1" type="stmt"/>
-        <line num="56" count="1" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
-        <line num="58" count="9" type="stmt"/>
+        <metrics statements="37" coveredstatements="37" conditionals="23" coveredconditionals="21" methods="12" coveredmethods="12"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="18" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="23" count="49" type="cond" truecount="3" falsecount="0"/>
+        <line num="24" count="49" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="31" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="41" count="14" type="cond" truecount="1" falsecount="0"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="50" count="13" type="stmt"/>
+        <line num="51" count="13" type="stmt"/>
+        <line num="52" count="13" type="cond" truecount="1" falsecount="0"/>
+        <line num="53" count="13" type="stmt"/>
+        <line num="54" count="13" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
+        <line num="59" count="2" type="cond" truecount="1" falsecount="0"/>
         <line num="60" count="1" type="stmt"/>
-        <line num="64" count="2" type="stmt"/>
-        <line num="66" count="2" type="stmt"/>
-        <line num="67" count="2" type="stmt"/>
-        <line num="69" count="2" type="cond" truecount="2" falsecount="1"/>
-        <line num="71" count="2" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="80" count="0" type="cond" truecount="0" falsecount="3"/>
-        <line num="82" count="0" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="63" count="9" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="69" count="8" type="stmt"/>
+        <line num="71" count="6" type="stmt"/>
+        <line num="72" count="6" type="stmt"/>
+        <line num="74" count="6" type="cond" truecount="3" falsecount="0"/>
+        <line num="76" count="6" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="85" count="1" type="cond" truecount="1" falsecount="2"/>
+        <line num="87" count="1" type="stmt"/>
       </file>
     </package>
     <package name="infra.database.memory.item.seeders">
@@ -195,45 +189,6 @@
         <line num="29" count="0" type="stmt"/>
       </file>
     </package>
-    <package name="shared">
-      <metrics statements="33" coveredstatements="23" conditionals="13" coveredconditionals="3" methods="5" coveredmethods="2"/>
-      <file name="utils.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\shared\utils.ts">
-        <metrics statements="33" coveredstatements="23" conditionals="13" coveredconditionals="3" methods="5" coveredmethods="2"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="0" type="cond" truecount="0" falsecount="5"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="6" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="15" count="3" type="stmt"/>
-        <line num="18" count="3" type="cond" truecount="0" falsecount="1"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="23" count="3" type="cond" truecount="0" falsecount="1"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="28" count="3" type="stmt"/>
-        <line num="29" count="3" type="stmt"/>
-        <line num="30" count="27" type="stmt"/>
-        <line num="32" count="3" type="stmt"/>
-        <line num="33" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="34" count="3" type="cond" truecount="0" falsecount="1"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="39" count="3" type="stmt"/>
-        <line num="40" count="3" type="stmt"/>
-        <line num="41" count="30" type="stmt"/>
-        <line num="43" count="3" type="stmt"/>
-        <line num="44" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="45" count="3" type="cond" truecount="0" falsecount="1"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="49" count="3" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-      </file>
-    </package>
     <package name="shared.adapters">
       <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="jsonDataReader.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\shared\adapters\jsonDataReader.ts">
@@ -249,48 +204,33 @@
       </file>
     </package>
     <package name="shared.exceptions">
-      <metrics statements="17" coveredstatements="12" conditionals="20" coveredconditionals="17" methods="6" coveredmethods="3"/>
-      <file name="base.exception.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\shared\exceptions\base.exception.ts">
-        <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="4" count="6" type="cond" truecount="3" falsecount="1"/>
-      </file>
+      <metrics statements="15" coveredstatements="15" conditionals="16" coveredconditionals="14" methods="5" coveredmethods="5"/>
       <file name="cpfInvalido.exception.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\shared\exceptions\cpfInvalido.exception.ts">
-        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
       </file>
       <file name="dtoValidationError.exception.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\shared\exceptions\dtoValidationError.exception.ts">
-        <metrics statements="6" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
       </file>
       <file name="registroExistente.exception.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\shared\exceptions\registroExistente.exception.ts">
         <metrics statements="3" coveredstatements="3" conditionals="8" coveredconditionals="7" methods="1" coveredmethods="1"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="5" count="4" type="cond" truecount="7" falsecount="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="cond" truecount="7" falsecount="1"/>
       </file>
       <file name="registroInexistente.exception.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\shared\exceptions\registroInexistente.exception.ts">
         <metrics statements="3" coveredstatements="3" conditionals="8" coveredconditionals="7" methods="1" coveredmethods="1"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="5" count="2" type="cond" truecount="7" falsecount="1"/>
-      </file>
-    </package>
-    <package name="shared.types">
-      <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="defaultClass.ts" path="D:\Projects\estudos\postech-ms-aplicacao\src\shared\types\defaultClass.ts">
-        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="3" type="stmt"/>
-        <line num="2" count="3" type="stmt"/>
-        <line num="6" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="7" count="0" type="stmt"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="4" type="cond" truecount="7" falsecount="1"/>
       </file>
     </package>
   </project>

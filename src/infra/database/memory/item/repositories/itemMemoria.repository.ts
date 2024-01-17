@@ -20,16 +20,21 @@ export class ItemMemoriaRepository implements Repository<Item> {
 
   async listar(queryProps?: any): Promise<Item[]> {
     return ItemMemoriaRepository.itens.filter((item) => {
-      const filtro = !queryProps || queryProps.tipo == null || item.tipo === queryProps.tipo;
-      return !item.deletedAt && filtro;
-    });
+      const filtro = !queryProps || queryProps.tipo == null || item.tipo === queryProps.tipo
+      return !item.deletedAt && filtro
+    })
   }
 
   async deletar({ _id }: DeletarProps): Promise<boolean> {
-    const item = await this.buscarUm({ query: { _id } })
-    if (!item) throw new RegistroInexistenteException({ campo: "id" })
-    item.deletedAt = new Date()
-    return true
+    try {
+      const item = await this.buscarUm({ query: { _id } })
+      if (!item) throw new RegistroInexistenteException({ campo: "id" })
+      item.deletedAt = new Date()
+      return true
+    } catch (error) {
+      // throw error
+      return false;
+    }
   }
 
   async criar({ item }: CriarProps<Item>): Promise<Item> {
