@@ -21,5 +21,10 @@ export default {
     AWS_ACCESS_KEY_ID: emptyToUndefined(process.env.AWS_ACCESS_KEY_ID),
     AWS_SECRET_ACCESS_KEY: emptyToUndefined(process.env.AWS_SECRET_ACCESS_KEY),
     AWS_REGION: emptyToUndefined(process.env.AWS_REGION),
+  },
+  ms: {
+    pedido: {
+      endpoint: emptyToUndefined(process.env.MS_PEDIDO_ENDPOINT),
+    },
   }
 };

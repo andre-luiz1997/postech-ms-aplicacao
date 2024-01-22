@@ -26,9 +26,10 @@ export class MongoConnection implements Connection {
     }
     this.connectionString += `${this.props.host}:${this.props.port}/${this.props.database}`;
   }
-
+  
   async connect(): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
+      console.log("🚀 ~ MongoConnection ~ createConnectionString ~ this.connectionString:", this.connectionString)
       mongoose
         .connect(this.connectionString)
         .then((res) => {
