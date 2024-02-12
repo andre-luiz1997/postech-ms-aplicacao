@@ -24,5 +24,14 @@ services:
       - ./swagger:/usr/share/nginx/html/swagger
     environment:
       API_URL: /swagger/openapi.yaml
+  rabbitmq: 
+    image: rabbitmq:3.13-rc-alpine
+    container_name: rabbitmq_container
+    ports:
+      - 5672:5672
+      - 15672:15672
+    variables:
+      RABBITMQ_DEFAULT_USER: "postech"
+      RABBITMQ_DEFAULT_PASS: "soat"
 volumes:
   mongodb:
