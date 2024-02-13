@@ -8,16 +8,19 @@ import { CadastrarClienteDto } from "../dtos/cadastrarCliente.dto"
 import { EditarClienteDto } from "../dtos/editarCliente.dto"
 import { PedidoMS } from "src/infra/ms/pedido"
 import config from "src/shared/config"
+import { IMessagingQueue } from "src/infra/messaging/ports/queue"
 
 export class ClienteController {
   private readonly cadastrarUseCase: CadastrarClienteUseCase
   private readonly editarUseCase: EditarClienteUseCase
-  private readonly PedidoMS: PedidoMS
 
-  constructor(private readonly repository: Repository<Cliente>) {
-    this.cadastrarUseCase = new CadastrarClienteUseCase(this.repository)
+  constructor(
+    private readonly repository: Repository<Cliente>,
+    private readonly messagingQueue: IMessagingQueue
+  ) {
+    this.messagingQueue = messagingQueue;
+    this.cadastrarUseCase = new CadastrarClienteUseCase(this.repository, this.messagingQueue)
     this.editarUseCase = new EditarClienteUseCase(this.repository)
-    this.PedidoMS = new PedidoMS(config.ms.pedido.endpoint)
   }
 
   async listar() {
@@ -47,7 +50,6 @@ export class ClienteController {
 
   async editar(body: EditarClienteDto) {
     const res = await this.editarUseCase.execute(body);
-    this.PedidoMS.onUpdateCliente(res).then(console.log).catch(console.error);
     return res;
   }
 

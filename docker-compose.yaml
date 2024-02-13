@@ -25,12 +25,12 @@ services:
     environment:
       API_URL: /swagger/openapi.yaml
   rabbitmq: 
-    image: rabbitmq:3.13-rc-alpine
+    image: rabbitmq:3.13-rc-management-alpine
     container_name: rabbitmq_container
     ports:
       - 5672:5672
       - 15672:15672
-    variables:
+    environment:
       RABBITMQ_DEFAULT_USER: "postech"
       RABBITMQ_DEFAULT_PASS: "soat"
 volumes:

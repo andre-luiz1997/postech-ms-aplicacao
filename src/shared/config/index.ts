@@ -26,5 +26,15 @@ export default {
     pedido: {
       endpoint: emptyToUndefined(process.env.MS_PEDIDO_ENDPOINT),
     },
+  },
+  queue: {
+    host: emptyToUndefined(process.env.QUEUE_HOST),
+    port: emptyToUndefined(process.env.QUEUE_PORT),
+    user: emptyToUndefined(process.env.QUEUE_USER),
+    password: emptyToUndefined(process.env.QUEUE_PASSWORD),
+    queues: {
+      queue1: emptyToUndefined(process.env.QUEUE_1),
+      queue2: emptyToUndefined(process.env.QUEUE_2),
+    }
   }
 };
