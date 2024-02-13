@@ -1,11 +1,12 @@
 import { emptyToUndefined } from "src/shared/utils";
 import { IMessagingQueue, IMessagingQueueProps } from "../ports/queue";
 import * as rabbitMQ from 'amqplib/callback_api';
+import config from "src/shared/config";
 
 export class RabbitQueue implements IMessagingQueue {
     static connectionString: string;
     static connection?: rabbitMQ.Connection;
-    static instance?: RabbitQueue;
+    private static instance?: RabbitQueue;
     static props: IMessagingQueueProps;
     static channel?: rabbitMQ.Channel;
 
@@ -14,6 +15,12 @@ export class RabbitQueue implements IMessagingQueue {
       }
 
     private constructor() {
+        RabbitQueue.props = {
+            host: config.queue.host,
+            port: config.queue.port,
+            password: config.queue.password,
+            user: config.queue.user,
+        } 
         this.createConnectionString();
     }
 

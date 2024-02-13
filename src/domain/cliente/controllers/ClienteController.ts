@@ -9,18 +9,21 @@ import { EditarClienteDto } from "../dtos/editarCliente.dto"
 import { PedidoMS } from "src/infra/ms/pedido"
 import config from "src/shared/config"
 import { IMessagingQueue } from "src/infra/messaging/ports/queue"
+import { DeletarClienteUseCase } from "../usecases/deletarCliente.usecase"
 
 export class ClienteController {
   private readonly cadastrarUseCase: CadastrarClienteUseCase
   private readonly editarUseCase: EditarClienteUseCase
+  private readonly deletarUseCase: DeletarClienteUseCase
 
   constructor(
     private readonly repository: Repository<Cliente>,
     private readonly messagingQueue: IMessagingQueue
   ) {
     this.messagingQueue = messagingQueue;
-    this.cadastrarUseCase = new CadastrarClienteUseCase(this.repository, this.messagingQueue)
-    this.editarUseCase = new EditarClienteUseCase(this.repository)
+    this.cadastrarUseCase = new CadastrarClienteUseCase(this.repository)
+    this.editarUseCase = new EditarClienteUseCase(this.repository,this.messagingQueue)
+    this.deletarUseCase = new DeletarClienteUseCase(this.repository,this.messagingQueue)
   }
 
   async listar() {
@@ -54,6 +57,6 @@ export class ClienteController {
   }
 
   async deletar(_id: string) {
-    return this.repository.deletar({ _id })
+    return this.deletarUseCase.execute(_id)
   }
 }
