@@ -27,7 +27,7 @@ export class EditarClienteUseCase implements UseCase<EditarClienteDto, OutputPro
 
         let item = new Cliente(props);
         item = await this.repository.editar({_id, item})
-        this.messagingQueue.publishToQueue(this.queue, item.toString())
+        this.messagingQueue.publishToQueue(this.queue, JSON.stringify(item))
         return item;
     }
 

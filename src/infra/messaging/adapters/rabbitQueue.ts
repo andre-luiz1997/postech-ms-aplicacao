@@ -61,11 +61,17 @@ export class RabbitQueue implements IMessagingQueue {
         RabbitQueue.channel.prefetch(0);
     }
 
-    subscribeToQueue(queue_name: string, callback: Function) {
-        RabbitQueue.channel.consume(queue_name, (data) => callback(data), {noAck: true})
+    async subscribeToQueue(queue_name: string, callback: Function) {
+        if(!RabbitQueue.channel) await this.connect();
+        RabbitQueue.channel.consume(queue_name, (data) => {
+            const res = data.content.toString();
+            console.log('received data from queue', queue_name, JSON.parse(res));
+            callback(res)
+        }, {noAck: true})
     }
 
     publishToQueue (queue_name: string, data: string) {
+        console.log('publish data to queue', queue_name, data);
         RabbitQueue.channel.sendToQueue(queue_name, Buffer.from(data));
     }
 }

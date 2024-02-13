@@ -23,7 +23,7 @@ export class DeletarClienteUseCase implements UseCase<string, OutputProps> {
     async execute(_id: string): Promise<OutputProps> {
         const item = await this.repository.buscarUm({query: {_id}});
         const res = await this.repository.deletar({_id})
-        this.messagingQueue.publishToQueue(this.queue, item.toString())
+        this.messagingQueue.publishToQueue(this.queue, JSON.stringify(item))
         return res;
     }
 

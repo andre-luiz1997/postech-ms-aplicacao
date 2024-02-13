@@ -6,8 +6,6 @@ import { CPFInvalidoException } from "src/shared/exceptions/cpfInvalido.exceptio
 import { EditarClienteUseCase } from "../usecases/editarCliente.usecase"
 import { CadastrarClienteDto } from "../dtos/cadastrarCliente.dto"
 import { EditarClienteDto } from "../dtos/editarCliente.dto"
-import { PedidoMS } from "src/infra/ms/pedido"
-import config from "src/shared/config"
 import { IMessagingQueue } from "src/infra/messaging/ports/queue"
 import { DeletarClienteUseCase } from "../usecases/deletarCliente.usecase"
 

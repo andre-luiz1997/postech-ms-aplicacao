@@ -7,6 +7,4 @@ export abstract class DefaultClass {
       this._id = uuid()
     }
   }
-
-  toString?(): string;
 }

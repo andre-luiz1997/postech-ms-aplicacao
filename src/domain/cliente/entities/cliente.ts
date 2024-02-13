@@ -31,15 +31,4 @@ export class Cliente extends DefaultClass {
     }
   }
 
-  toString(): string {
-    return JSON.stringify({
-      _id: this._id,
-      nome: this.nome,
-      email: this.email,
-      cpf: this.cpf,
-      created: this.created,
-      updated: this.updated,
-      deleted: this.deleted,
-    })
-  }
 }
