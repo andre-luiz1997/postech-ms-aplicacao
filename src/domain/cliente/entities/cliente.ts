@@ -30,4 +30,5 @@ export class Cliente extends DefaultClass {
       this._id = uuid();
     }
   }
+
 }

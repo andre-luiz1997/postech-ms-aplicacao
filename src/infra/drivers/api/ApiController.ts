@@ -7,6 +7,7 @@ import { ClienteMemoriaRepository } from "src/infra/database/memory/cliente/repo
 import { ItemMemoriaRepository } from "src/infra/database/memory/item/repositories/itemMemoria.repository"
 import { ItemDynamoRepository } from "src/infra/database/dynamodb/localstack/item/repositories/itemDynamo.repository";
 import { ClienteDynamoRepository } from "src/infra/database/dynamodb/localstack/cliente/repositories/clientesDynamo.repository";
+import { RabbitQueue } from "src/infra/messaging/adapters/rabbitQueue";
 
 export class ApiController {
   private static instance: ApiController
@@ -16,6 +17,7 @@ export class ApiController {
   constructor() {
     const isDynamoDatabase = config.NODE_ENV == "aws"
     const isMongoDatabase = config.NODE_ENV == "production" || config.NODE_ENV == "debug"
+    const messagingQueue = RabbitQueue.Instance;
 
     let clienteRepo
     let itemRepo
@@ -30,7 +32,7 @@ export class ApiController {
       itemRepo = !isMongoDatabase ? new ItemMemoriaRepository() : new ItemMongoRepository();
     }
     
-    this.clienteController = new ClienteController(clienteRepo)
+    this.clienteController = new ClienteController(clienteRepo,messagingQueue)
     this.itemController = new ItemController(itemRepo)
   }
 

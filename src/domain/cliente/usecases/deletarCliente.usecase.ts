@@ -9,26 +9,22 @@ import config from "src/shared/config";
 import { IMessagingQueue } from "src/infra/messaging/ports/queue";
 
 
-type OutputProps = Cliente
+type OutputProps = Boolean
 
-export class EditarClienteUseCase implements UseCase<EditarClienteDto, OutputProps> {
+export class DeletarClienteUseCase implements UseCase<string, OutputProps> {
     private queue: string;
     constructor(
         private readonly repository: Repository<Cliente>,
         private readonly messagingQueue: IMessagingQueue
     ){
-        this.queue = config.queue.queues.queue1;
+        this.queue = config.queue.queues.queue2;
     }
 
-    async execute({_id, props}: EditarClienteDto): Promise<OutputProps> {
-        if(!props.cpf && !props.email && !props.nome) throw new DtoValidationException(['Ao menos um dos campos é obrigatório']);
-        if(props.cpf && !isCPFValido(props.cpf)) throw new CPFInvalidoException()
-        if(props.cpf) props.cpf = sanitizar(props.cpf);
-
-        let item = new Cliente(props);
-        item = await this.repository.editar({_id, item})
+    async execute(_id: string): Promise<OutputProps> {
+        const item = await this.repository.buscarUm({query: {_id}});
+        const res = await this.repository.deletar({_id})
         this.messagingQueue.publishToQueue(this.queue, JSON.stringify(item))
-        return item;
+        return res;
     }
 
 }

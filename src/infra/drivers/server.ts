@@ -3,16 +3,21 @@ import * as bodyParser from "body-parser";
 import config from "@shared/config";
 import routes from "./routes";
 import {MongoConnection} from "../database/mongodb/adapters/MongoConnection";
-import { DynamoConnection } from "../database/dynamodb/localstack/adapters/DynamoConnection";
-import { ClienteModel } from "../database/dynamodb/localstack/cliente/models/cliente.dynamo";
+import { RabbitQueue } from "../messaging/adapters/rabbitQueue";
 
 const isDynamoDatabase = config.NODE_ENV == "aws"
 const isMongoDatabase = config.NODE_ENV == "production" || config.NODE_ENV == "debug"
 const PORT = config.PORT || 3000;
 const cors = require('cors');
 const app = express();
+const queue = RabbitQueue.Instance;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+queue.connect().then(() => {
+  Object.entries(config.queue.queues)?.forEach(([key,value]) => {
+    queue.addQueue(value);
+  })
+})
 
 app.use(cors());
 
