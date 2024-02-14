@@ -38,36 +38,24 @@ async function bootstrapMemoryDatabase() {
 
 async function bootstrapMongoDatabase() {
   console.log(config)
-  const client = new MongoConnection({
+  MongoConnection.props = {
     user: config.mongo.MONGO_USER,
     password: config.mongo.MONGO_PW,
     database: config.mongo.MONGO_DATABASE,
     host: config.mongo.MONGO_HOST,
     port: +config.mongo.MONGO_PORT,
-  })
-  await client.connect()
+  }
+  await MongoConnection.Instance.connect()
   clientesRepository = new ClienteMongoRepository()
   itensRepository = new ItemMongoRepository()
 }
 
-async function boostrapDynamoDatabase() {
-  const client = new DynamoConnection({
-    host: config.dynamo.DYNAMO_HOST,
-    port: +config.dynamo.DYNAMO_PORT,
-    database: config.dynamo.DYNAMO_REGION,
-    user: config.dynamo.DYNAMO_ACCESS_KEY_ID,
-    password: config.dynamo.DYNAMO_SECRET_ACCESS_KEY,
-  });
-  await client.connect();
-  clientesRepository = new ClienteDynamoRepository();
-}
 
 // SEEDERS =======================================================================
 
 async function bootstrap() {
   try {
     if (isMemoryDatabase) bootstrapMemoryDatabase()
-    else if (isDynamoDatabase) boostrapDynamoDatabase()
     else bootstrapMongoDatabase()
   } catch (error) {
     console.log(error)
