@@ -42,7 +42,7 @@ export interface Repository<T> extends BaseRepository<T> {
     deletar(props: DeletarProps): Promise<boolean>;
 
     startTransaction?(): Promise<any>;
-    inTransaction?(transaction: any, callback: Promise<any>): Promise<any>;
+    inTransaction?(transaction: any, callback: () => Promise<any>): Promise<any>;
     commitTransaction?(transaction: any): Promise<any>;
     rollbackTransaction?(transaction: any): Promise<any>;
 }

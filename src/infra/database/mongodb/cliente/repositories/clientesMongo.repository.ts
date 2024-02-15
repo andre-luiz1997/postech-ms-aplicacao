@@ -56,11 +56,12 @@ export class ClienteMongoRepository implements Repository<Cliente> {
         _id: new mongoose.Types.ObjectId(item._id),
       },
     }
-    const cliente = await this.buscarUm({ query })
+    const cliente = await this.buscarUm({ query, transaction })
     if (item._id && cliente) throw new RegistroExistenteException({})
     item._id = new mongoose.Types.ObjectId()
-    const _item = await ClienteModel.create(item)
-    return this.buscarUm({query: {_id: _item._id},transaction})
+    const _item = await ClienteModel.create([item],{session: transaction})
+    console.log(_item)
+    return this.buscarUm({query: {_id: item._id},transaction})
   }
 
   async editar({ _id, item }: EditarProps<Cliente>): Promise<Cliente> {
@@ -96,20 +97,23 @@ export class ClienteMongoRepository implements Repository<Cliente> {
 
   async startTransaction() {
     const session = await MongoConnection.Instance.connection.startSession();
+    session.startTransaction({
+      session
+    })
     return session;
   }
 
   async commitTransaction(transaction: mongoose.mongo.ClientSession) {
-    return transaction.inTransaction() && transaction.commitTransaction();
+    if(!transaction.inTransaction()) return;
+    return transaction.commitTransaction();
   }
 
   async rollbackTransaction(transaction: mongoose.mongo.ClientSession) {
-    return transaction.inTransaction() && transaction.abortTransaction(); 
+    if(!transaction.inTransaction()) return;
+    return transaction.abortTransaction() 
   }
 
-  async inTransaction(transaction: mongoose.mongo.ClientSession, callback: Promise<any>) {
-    return transaction.withTransaction(async () => {
-      return await callback
-    },{session: transaction});
+  async inTransaction(transaction: mongoose.mongo.ClientSession, callback: () => Promise<any>) {
+    return MongoConnection.Instance.connection.transaction(callback);
   }
 }

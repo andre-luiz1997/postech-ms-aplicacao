@@ -19,6 +19,7 @@ export class CadastrarClienteUseCase implements UseCase<InputProps, OutputProps>
     if (props.cpf) props.cpf = sanitizar(props.cpf)
 
     const item = new Cliente(props)
-    return this.repository.criar({ item, transaction })
+    const cliente = await this.repository.criar({ item, transaction })
+    return cliente
   }
 }

@@ -48,16 +48,20 @@ export class ClienteController {
   async criar(body: CadastrarClienteDto) {
     const transaction = await this.repository.startTransaction()
     try {
-      const createdItem = await this.repository.inTransaction(transaction, this.cadastrarUseCase.execute({data: body, transaction}))
+      let createdItem; 
+      await this.repository.inTransaction(transaction, async () => {
+        createdItem = this.cadastrarUseCase.execute({data: body, transaction})
+      })
       // const createdItem = await this.cadastrarUseCase.execute(body)
 
       console.log("createdItem", createdItem)
-      throw new Error("teste rollback")
+      
 
       await this.repository.commitTransaction(transaction)
       return createdItem
     } catch (error) {
-      await this.repository.rollbackTransaction(transaction)
+      const res = await this.repository.rollbackTransaction(transaction)
+      console.log(res);
       throw error
     }
   }
