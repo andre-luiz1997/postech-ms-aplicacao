@@ -110,4 +110,20 @@ export class ClienteMemoriaRepository implements Repository<Cliente> {
     }
     return true
   }
+
+  async startTransaction() {
+    return new Promise<null>((resolve) => resolve(null));
+  }
+
+  async commitTransaction(transaction: any) {
+    return;
+  }
+
+  async rollbackTransaction(transaction: any) {
+    return
+  }
+
+  async inTransaction(transaction: any, callback: () => Promise<any>) {
+    return callback();
+  }
 }

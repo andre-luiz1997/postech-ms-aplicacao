@@ -22,7 +22,7 @@ test("Cadastrar um cliente sem os campos obrigatorios", async function () {
 
   const cliente = new Cliente({})
   try {
-    const output = await usecase.execute(cliente)
+    const output = await usecase.execute({data: cliente})
     expect(output).toThrow(DtoValidationException)
   } catch (error) {}
 })
@@ -34,7 +34,7 @@ test("Cadastrar um cliente com cpf invalido", async function () {
     cpf: "12345678910",
   })
   try {
-    const output = await usecase.execute(cliente)
+    const output = await usecase.execute({data: cliente})
     expect(output).toThrow(CPFInvalidoException)
   } catch (error) {}
 })
