@@ -37,7 +37,6 @@ async function bootstrapMemoryDatabase() {
 }
 
 async function bootstrapMongoDatabase() {
-  console.log(config)
   MongoConnection.props = {
     user: config.mongo.MONGO_USER,
     password: config.mongo.MONGO_PW,

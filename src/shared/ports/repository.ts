@@ -14,6 +14,7 @@ export interface IsUniqueManyProps {
 
 export interface BuscarUmProps {
     query: any;
+    transaction?: any;
 }
 export interface DeletarProps {
     _id: string;
@@ -26,6 +27,7 @@ export interface EditarProps<T> {
 
 export interface CriarProps<T> {
     item: T
+    transaction?: any;
 }
 
 export interface BaseRepository<T> {
@@ -38,4 +40,9 @@ export interface Repository<T> extends BaseRepository<T> {
     editar(props: EditarProps<T>): Promise<T>;
     isUnique?(props: IsUniqueProps | IsUniqueManyProps): Promise<boolean>;
     deletar(props: DeletarProps): Promise<boolean>;
+
+    startTransaction?(): Promise<any>;
+    inTransaction?(transaction: any, callback: Promise<any>): Promise<any>;
+    commitTransaction?(transaction: any): Promise<any>;
+    rollbackTransaction?(transaction: any): Promise<any>;
 }

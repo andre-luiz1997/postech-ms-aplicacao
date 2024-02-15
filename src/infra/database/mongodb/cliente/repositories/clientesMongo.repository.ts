@@ -4,6 +4,7 @@ import { Cliente } from "@domain/cliente/entities/cliente"
 import { RegistroInexistenteException } from "@shared/exceptions/registroInexistente.exception"
 import { ClienteModel } from "@infra/database/mongodb/cliente/models/cliente.mongo"
 import mongoose from "mongoose"
+import { MongoConnection } from "../../adapters/MongoConnection"
 
 export class ClienteMongoRepository implements Repository<Cliente> {
   async listar(): Promise<Cliente[]> {
@@ -18,7 +19,7 @@ export class ClienteMongoRepository implements Repository<Cliente> {
     return true
   }
 
-  async criar({item}: CriarProps<Cliente>): Promise<Cliente> {
+  async criar({item, transaction}: CriarProps<Cliente>): Promise<Cliente> {
     const isEmailUnique =
       item.email &&
       (await this.isUnique({
@@ -59,7 +60,7 @@ export class ClienteMongoRepository implements Repository<Cliente> {
     if (item._id && cliente) throw new RegistroExistenteException({})
     item._id = new mongoose.Types.ObjectId()
     const _item = await ClienteModel.create(item)
-    return this.buscarUm({query: {_id: _item._id}})
+    return this.buscarUm({query: {_id: _item._id},transaction})
   }
 
   async editar({ _id, item }: EditarProps<Cliente>): Promise<Cliente> {
@@ -79,7 +80,8 @@ export class ClienteMongoRepository implements Repository<Cliente> {
     if (!props.query?.deletedAt) {
       props.query.deletedAt = null;
     }
-    return ClienteModel.findOne(props.query)
+    console.log("🚀 ~ ClienteMongoRepository ~ buscarUm ~ props.query:", props.query)
+    return ClienteModel.findOne(props.query,{},{session: props.transaction})
   }
 
   async isUnique(props: IsUniqueProps): Promise<boolean> {
@@ -90,5 +92,24 @@ export class ClienteMongoRepository implements Repository<Cliente> {
     }
     const item = await this.buscarUm(query)
     return item === null
+  }
+
+  async startTransaction() {
+    const session = await MongoConnection.Instance.connection.startSession();
+    return session;
+  }
+
+  async commitTransaction(transaction: mongoose.mongo.ClientSession) {
+    return transaction.inTransaction() && transaction.commitTransaction();
+  }
+
+  async rollbackTransaction(transaction: mongoose.mongo.ClientSession) {
+    return transaction.inTransaction() && transaction.abortTransaction(); 
+  }
+
+  async inTransaction(transaction: mongoose.mongo.ClientSession, callback: Promise<any>) {
+    return transaction.withTransaction(async () => {
+      return await callback
+    },{session: transaction});
   }
 }
