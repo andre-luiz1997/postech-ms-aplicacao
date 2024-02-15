@@ -24,14 +24,47 @@ export class ItemController {
   }
 
   async criar(body: ItemProps) {
-    return this.cadastrarItemUseCase.execute(body)
+    const transaction = await this.repository.startTransaction()
+    try {
+      let createdItem; 
+      await this.repository.inTransaction(transaction, async () => {
+        createdItem = this.cadastrarItemUseCase.execute({data: body, transaction})
+      })
+      await this.repository.commitTransaction(transaction)
+      return createdItem
+    } catch (error) {
+      await this.repository.rollbackTransaction(transaction)
+      throw error
+    }
   }
 
   async editar(_id: string, body: ItemProps) {
-    return this.editarItemUseCase.execute({_id, props: body})
+    const transaction = await this.repository.startTransaction()
+    try {
+      let res; 
+      await this.repository.inTransaction(transaction, async () => {
+        res = await this.editarItemUseCase.execute({_id, props: body, transaction});
+      })
+      await this.repository.commitTransaction(transaction)
+      return res
+    } catch (error) {
+      await this.repository.rollbackTransaction(transaction)
+      throw error
+    }
   }
 
   async deletar(_id: string) {
-    return this.repository.deletar({ _id })
+    const transaction = await this.repository.startTransaction()
+    try {
+      let res; 
+      await this.repository.inTransaction(transaction, async () => {
+        res = await this.repository.deletar({_id, transaction});
+      })
+      await this.repository.commitTransaction(transaction)
+      return res
+    } catch (error) {
+      await this.repository.rollbackTransaction(transaction)
+      throw error
+    }
   }
 }

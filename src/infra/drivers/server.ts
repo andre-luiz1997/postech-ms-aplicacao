@@ -13,11 +13,11 @@ const app = express();
 const queue = RabbitQueue.Instance;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// queue.connect().then(() => {
-//   Object.entries(config.queue.queues)?.forEach(([key,value]) => {
-//     queue.addQueue(value);
-//   })
-// })
+queue.connect().then(() => {
+  Object.entries(config.queue.queues)?.forEach(([key,value]) => {
+    queue.addQueue(value);
+  })
+})
 
 app.use(cors());
 

@@ -8,10 +8,10 @@ import { isCPFValido, sanitizar } from "@shared/utils";
 import config from "src/shared/config";
 import { IMessagingQueue } from "src/infra/messaging/ports/queue";
 
-
+type InputProps = {_id: string, transaction?: any}
 type OutputProps = Boolean
 
-export class DeletarClienteUseCase implements UseCase<string, OutputProps> {
+export class DeletarClienteUseCase implements UseCase<InputProps, OutputProps> {
     private queue: string;
     constructor(
         private readonly repository: Repository<Cliente>,
@@ -20,9 +20,9 @@ export class DeletarClienteUseCase implements UseCase<string, OutputProps> {
         this.queue = config.queue.queues.queue2;
     }
 
-    async execute(_id: string): Promise<OutputProps> {
-        const item = await this.repository.buscarUm({query: {_id}});
-        const res = await this.repository.deletar({_id})
+    async execute({_id, transaction}: InputProps): Promise<OutputProps> {
+        const item = await this.repository.buscarUm({query: {_id},transaction});
+        const res = await this.repository.deletar({_id,transaction})
         this.messagingQueue.publishToQueue(this.queue, JSON.stringify(item))
         return res;
     }

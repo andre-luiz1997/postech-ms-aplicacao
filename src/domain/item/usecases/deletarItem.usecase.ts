@@ -4,6 +4,7 @@ import { Item } from "@domain/item/entities/item";
 
 interface DeletarItemDto {
   _id: string;
+  transaction?: any;
 }
 
 type OutputProps = boolean;
@@ -13,7 +14,7 @@ export class DeletarItemUseCase
 {
   constructor(private readonly repository: Repository<Item>) {}
 
-  async execute({ _id }: DeletarItemDto): Promise<OutputProps> {
-    return await this.repository.deletar({ _id });
+  async execute({ _id, transaction }: DeletarItemDto): Promise<OutputProps> {
+    return await this.repository.deletar({ _id, transaction });
   }
 }

@@ -52,26 +52,41 @@ export class ClienteController {
       await this.repository.inTransaction(transaction, async () => {
         createdItem = this.cadastrarUseCase.execute({data: body, transaction})
       })
-      // const createdItem = await this.cadastrarUseCase.execute(body)
-
-      console.log("createdItem", createdItem)
-      
-
       await this.repository.commitTransaction(transaction)
       return createdItem
     } catch (error) {
-      const res = await this.repository.rollbackTransaction(transaction)
-      console.log(res);
+      await this.repository.rollbackTransaction(transaction)
       throw error
     }
   }
 
   async editar(body: EditarClienteDto) {
-    const res = await this.editarUseCase.execute(body);
-    return res;
+    const transaction = await this.repository.startTransaction()
+    try {
+      let res; 
+      await this.repository.inTransaction(transaction, async () => {
+        res = await this.editarUseCase.execute({data: body, transaction});
+      })
+      await this.repository.commitTransaction(transaction)
+      return res
+    } catch (error) {
+      await this.repository.rollbackTransaction(transaction)
+      throw error
+    }
   }
 
   async deletar(_id: string) {
-    return this.deletarUseCase.execute(_id)
+    const transaction = await this.repository.startTransaction()
+    try {
+      let res; 
+      await this.repository.inTransaction(transaction, async () => {
+        res = await this.deletarUseCase.execute({_id, transaction});
+      })
+      await this.repository.commitTransaction(transaction)
+      return res
+    } catch (error) {
+      await this.repository.rollbackTransaction(transaction)
+      throw error
+    }
   }
 }

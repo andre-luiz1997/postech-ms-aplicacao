@@ -7,13 +7,14 @@ import { EditarItemDto } from "../dtos/editarItem.dto"
 type InputProps = {
   _id: string
   props: EditarItemDto
+  transaction?: any
 }
 type OutputProps = Item
 
 export class EditarItemUseCase implements UseCase<InputProps, OutputProps> {
   constructor(private readonly repository: Repository<Item>) {}
 
-  async execute({ _id, props }: InputProps): Promise<OutputProps> {
+  async execute({ _id, props, transaction }: InputProps): Promise<OutputProps> {
     const item = await this.repository.buscarUm({
       query: { _id },
     })
@@ -21,6 +22,6 @@ export class EditarItemUseCase implements UseCase<InputProps, OutputProps> {
       item[key] = value
     })
     if (!item) throw new RegistroInexistenteException({})
-    return await this.repository.editar({ _id, item })
+    return await this.repository.editar({ _id, item, transaction })
   }
 }

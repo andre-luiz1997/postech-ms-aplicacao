@@ -1,6 +1,7 @@
 export interface FindUniqueProps {
     prop: string;
     value: string;
+    transaction?: any;
 }
 
 export interface IsUniqueProps extends FindUniqueProps {
@@ -10,6 +11,7 @@ export interface IsUniqueProps extends FindUniqueProps {
 export interface IsUniqueManyProps {
     props: FindUniqueProps[];
     ignoreId?: string;
+    transaction?: any;
 }
 
 export interface BuscarUmProps {
@@ -18,11 +20,13 @@ export interface BuscarUmProps {
 }
 export interface DeletarProps {
     _id: string;
+    transaction?: any;
 }
 
 export interface EditarProps<T> {
     _id: string;
     item: T
+    transaction?: any;
 }
 
 export interface CriarProps<T> {

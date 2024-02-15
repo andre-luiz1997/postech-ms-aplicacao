@@ -8,10 +8,10 @@ import { isCPFValido, sanitizar } from "@shared/utils";
 import config from "src/shared/config";
 import { IMessagingQueue } from "src/infra/messaging/ports/queue";
 
-
+type InputProps = {data: EditarClienteDto, transaction?: any }
 type OutputProps = Cliente
 
-export class EditarClienteUseCase implements UseCase<EditarClienteDto, OutputProps> {
+export class EditarClienteUseCase implements UseCase<InputProps, OutputProps> {
     private queue: string;
     constructor(
         private readonly repository: Repository<Cliente>,
@@ -20,13 +20,13 @@ export class EditarClienteUseCase implements UseCase<EditarClienteDto, OutputPro
         this.queue = config.queue.queues.queue1;
     }
 
-    async execute({_id, props}: EditarClienteDto): Promise<OutputProps> {
+    async execute({data: {_id, props}, transaction}: InputProps): Promise<OutputProps> {
         if(!props.cpf && !props.email && !props.nome) throw new DtoValidationException(['Ao menos um dos campos é obrigatório']);
         if(props.cpf && !isCPFValido(props.cpf)) throw new CPFInvalidoException()
         if(props.cpf) props.cpf = sanitizar(props.cpf);
 
         let item = new Cliente(props);
-        item = await this.repository.editar({_id, item})
+        item = await this.repository.editar({_id, item, transaction})
         this.messagingQueue.publishToQueue(this.queue, JSON.stringify(item))
         return item;
     }
