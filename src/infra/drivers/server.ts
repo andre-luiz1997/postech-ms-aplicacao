@@ -7,6 +7,7 @@ import { RabbitQueue } from "../messaging/adapters/rabbitQueue";
 
 const isDynamoDatabase = config.NODE_ENV == "aws"
 const isMongoDatabase = config.NODE_ENV == "production" || config.NODE_ENV == "debug"
+console.log({isMongoDatabase})
 const PORT = config.PORT || 3000;
 const cors = require('cors');
 const app = express();

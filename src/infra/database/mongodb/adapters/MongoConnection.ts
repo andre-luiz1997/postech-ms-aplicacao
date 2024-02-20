@@ -34,7 +34,8 @@ export class MongoConnection implements Connection {
   async connect(): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
       try {
-        const connection = await mongoose.connect(this.connectionString)
+        const connection = await mongoose.connect(this.connectionString+'?directConnection=true')
+        console.log('mongo connected')
         this.connection = connection.connection
         resolve(true)
       } catch (error) {
