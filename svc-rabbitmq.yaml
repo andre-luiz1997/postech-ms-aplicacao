@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: svc-rabbitmq
+  name: svc-rabbitmq
+spec:
+  ports:
+    - name: rabbitmq
+      protocol: TCP
+      port: 5672
+      targetPort: 5672
+    - name: rabbitmq-admin
+      protocol: TCP
+      port: 15672
+      targetPort: 15672
+  selector:
+    app: pod-rabbitmq
+  type: NodePort

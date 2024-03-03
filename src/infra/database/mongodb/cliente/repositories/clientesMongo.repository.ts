@@ -85,7 +85,7 @@ export class ClienteMongoRepository implements Repository<Cliente> {
     if (!props.query?.deletedAt) {
       props.query.deletedAt = null;
     }
-    return ClienteModel.findOne(props.query,{},{session: props.transaction})
+    return ClienteModel.findOne(props.query,{},{session: props.transaction}).lean();
   }
 
   async isUnique(props: IsUniqueProps): Promise<boolean> {

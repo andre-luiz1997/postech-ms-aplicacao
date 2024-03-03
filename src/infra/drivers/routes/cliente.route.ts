@@ -36,6 +36,10 @@ router.patch("/:id", ClienteDTO.validate, (req: express.Request, res: express.Re
   )
 })
 
+router.delete("/lgpd/:id", (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  return response(apiController.clienteController.deletarLGPD(req.params.id), res, next)
+})
+
 router.delete("/:id", (req: express.Request, res: express.Response, next: express.NextFunction) => {
     return response(apiController.clienteController.deletar(req.params.id), res, next)
   })

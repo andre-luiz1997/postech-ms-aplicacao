@@ -31,4 +31,23 @@ export class Cliente extends DefaultClass {
     }
   }
 
+  randomize() {
+    this.nome = this.generateRandomName();
+    this.email = this.generateRandomEmail();
+    this.cpf = this.generateRandomCpf();
+  }
+
+  private generateRandomName(): string {
+    return 'John Doe';
+  }
+
+  private generateRandomEmail(): string {
+    // logic to generate a random email
+    return `johndoe${Math.random()}@email.com`
+  }
+
+  private generateRandomCpf(): string {
+    // logic to generate a random CPF
+    return `${Math.random()}`;
+  }
 }

@@ -35,6 +35,7 @@ export default {
     queues: {
       queue1: emptyToUndefined(process.env.QUEUE_1),
       queue2: emptyToUndefined(process.env.QUEUE_2),
+      queue3: emptyToUndefined(process.env.QUEUE_3),
     }
   }
 };
