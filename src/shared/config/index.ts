@@ -28,6 +28,7 @@ export default {
     },
   },
   queue: {
+    url: emptyToUndefined(process.env.QUEUE_URL),
     host: emptyToUndefined(process.env.QUEUE_HOST),
     port: emptyToUndefined(process.env.QUEUE_PORT),
     user: emptyToUndefined(process.env.QUEUE_USER),

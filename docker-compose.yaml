@@ -35,23 +35,23 @@ services:
       - ./swagger:/usr/share/nginx/html/swagger
     environment:
       API_URL: /swagger/openapi.yaml
-  rabbitmq: 
-    image: rabbitmq:3.13-rc-management-alpine
-    container_name: rabbitmq_container
-    ports:
-      - 5672:5672
-      - 15672:15672
-    healthcheck:
-      test: rabbitmq-diagnostics check_port_connectivity
-      start_period: 0s
-      interval: 30s
-      timeout: 30s
-      retries: 3
-    environment:
-      RABBITMQ_DEFAULT_USER: "postech"
-      RABBITMQ_DEFAULT_PASS: "soat"
-    networks:
-      - docker_network
+  # rabbitmq: 
+  #   image: rabbitmq:3.13-rc-management-alpine
+  #   container_name: rabbitmq_container
+  #   ports:
+  #     - 5672:5672
+  #     - 15672:15672
+  #   healthcheck:
+  #     test: rabbitmq-diagnostics check_port_connectivity
+  #     start_period: 0s
+  #     interval: 30s
+  #     timeout: 30s
+  #     retries: 3
+  #   environment:
+  #     RABBITMQ_DEFAULT_USER: "postech"
+  #     RABBITMQ_DEFAULT_PASS: "soat"
+  #   networks:
+  #     - docker_network
   node:
     restart: always
     build: .
@@ -62,9 +62,9 @@ services:
     depends_on:
       mongo:
         condition: service_started
-      rabbitmq: 
-        condition: service_healthy
-        restart: true
+      # rabbitmq: 
+      #   condition: service_healthy
+      #   restart: true
     networks:
       - docker_network
     environment:
