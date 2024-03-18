@@ -52,8 +52,10 @@ export class ClienteController {
     const transaction = await this.repository.startTransaction()
     try {
       let createdItem; 
+      console.log("CRIAR!")
       await this.repository.inTransaction(transaction, async () => {
         createdItem = this.cadastrarUseCase.execute({data: body, transaction})
+        console.log('🚀 ~ file: ClienteController.ts:57 ~ ClienteController ~ awaitthis.repository.inTransaction ~ createdItem 🚀 ➡➡', createdItem);
       })
       await this.repository.commitTransaction(transaction)
       return createdItem

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: pod-api-pos-tech
-          image: andresilveiralucas/pos-tech-ms-aplicacao:latest
+          image: andresilveiralucas/api-pos-tech-aplicacao:v05
           ports:
             - containerPort: 3001
           env: 
