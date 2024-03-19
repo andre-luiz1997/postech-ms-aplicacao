@@ -38,7 +38,7 @@ export class ItemMongoRepository implements Repository<Item> {
     // if (!isUnique) throw new RegistroExistenteException({ mensagem: "Já existe um item com os parâmetros informados" })
     item._id = new mongoose.Types.ObjectId()
     await ItemModel.create([item], {}, {session: transaction});
-    return this.buscarUm({query: {_id: item._id}, transaction})
+    return this.buscarUm({query: {query: {_id: item._id}}, transaction})
   }
 
   async editar({ _id, item, transaction }: EditarProps<Item>): Promise<Item> {

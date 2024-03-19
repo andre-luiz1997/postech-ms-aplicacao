@@ -64,7 +64,7 @@ export class ClienteMongoRepository implements Repository<Cliente> {
     // if (item._id && cliente) throw new RegistroExistenteException({})
     item._id = new mongoose.Types.ObjectId()
     await ClienteModel.create([item],{session: transaction})
-    return this.buscarUm({query: {_id: item._id},transaction})
+    return this.buscarUm({query: {query: {_id: item._id}},transaction})
   }
 
   async editar({ _id, item, transaction }: EditarProps<Cliente>): Promise<Cliente> {

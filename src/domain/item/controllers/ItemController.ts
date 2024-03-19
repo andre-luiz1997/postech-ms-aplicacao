@@ -28,7 +28,7 @@ export class ItemController {
     try {
       let createdItem; 
       await this.repository.inTransaction(transaction, async () => {
-        createdItem = this.cadastrarItemUseCase.execute({data: body, transaction})
+        createdItem = await this.cadastrarItemUseCase.execute({data: body, transaction})
       })
       await this.repository.commitTransaction(transaction)
       return createdItem
